@@ -5,9 +5,11 @@
  */
 package serializzazione;
 
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -37,9 +39,46 @@ public class Serializzazione {
             
             ObjectOutputStream oos = new ObjectOutputStream(fos);
                
+           
+            oos.writeObject(9);
+            oos.writeObject("ciao");
+            oos.writeObject(0.873);
+            
+       
+            
+            oos.flush();
+            oos.close();
+            fos.close();
+
+
+
+                
+                
+           try {
                
                
                
+               
+               
+               FileInputStream fis = new FileInputStream("TEST.ser");
+               ObjectInputStream ois = new ObjectInputStream(fis);
+               
+               int v1 = (int) ois.readObject();
+               System.out.println(v1);
+               String v2 = (String)ois.readObject();
+               System.out.println(v2);
+               double v3 = (double)ois.readObject();
+               System.out.println(v3);
+               
+               
+               
+               
+               
+               
+               
+           } catch (ClassNotFoundException ex) {
+               Logger.getLogger(Serializzazione.class.getName()).log(Level.SEVERE, null, ex);
+           }
                
                
                
@@ -53,3 +92,4 @@ public class Serializzazione {
     }
     
 }
+
